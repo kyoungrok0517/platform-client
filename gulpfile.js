@@ -20,7 +20,8 @@ var gulp         = require('gulp'),
     gzip         = require('gulp-gzip'),
     jscs         = require('gulp-jscs'),
     dotenv       = require('dotenv'),
-    Transifex    = require('transifex');
+    Transifex    = require('transifex'),
+    runSeq       = require('run-sequence'); 
 
 // Grab env vars from .env file
 dotenv.load({silent: true});
@@ -100,6 +101,14 @@ function errorHandler(err) {
     gutil.log(err.message || err);
     notify.onError('Error: <%= error %>')(err.message || err);
 }
+
+/**
+ * Task: `heroku:production`
+ * Heroku Production 
+ */
+gulp.task('heroku:production', function(){
+  runSeq('clean', 'build', 'minify')
+})
 
 /**
  * Task: `sass`
