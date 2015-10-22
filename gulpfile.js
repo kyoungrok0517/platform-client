@@ -1,30 +1,30 @@
-var gulp         = require('gulp'),
-    sass         = require('gulp-sass'),
-    livereload   = require('gulp-livereload'),
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    livereload = require('gulp-livereload'),
     autoprefixer = require('gulp-autoprefixer'),
-    plumber      = require('gulp-plumber'),
-    rename       = require('gulp-rename'),
-    gutil        = require('gulp-util'),
-    notify       = require('gulp-notify'),
-    source       = require('vinyl-source-stream'),
-    browserify   = require('browserify'),
-    watchify    = require('watchify'),
-    envify       = require('envify/custom'),
-    fs           = require('fs'),
-    karma        = require('karma').server,
-    buffer       = require('vinyl-buffer'),
-    uglify       = require('gulp-uglify'),
-    sourcemaps   = require('gulp-sourcemaps'),
-    bump         = require('gulp-bump'),
-    tar          = require('gulp-tar'),
-    gzip         = require('gulp-gzip'),
-    jscs         = require('gulp-jscs'),
-    dotenv       = require('dotenv'),
-    Transifex    = require('transifex'),
-    runSeq       = require('run-sequence'); 
+    plumber = require('gulp-plumber'),
+    rename = require('gulp-rename'),
+    gutil = require('gulp-util'),
+    notify = require('gulp-notify'),
+    source = require('vinyl-source-stream'),
+    browserify = require('browserify'),
+    watchify = require('watchify'),
+    envify = require('envify/custom'),
+    fs = require('fs'),
+    karma = require('karma').server,
+    buffer = require('vinyl-buffer'),
+    uglify = require('gulp-uglify'),
+    sourcemaps = require('gulp-sourcemaps'),
+    bump = require('gulp-bump'),
+    tar = require('gulp-tar'),
+    gzip = require('gulp-gzip'),
+    jscs = require('gulp-jscs'),
+    dotenv = require('dotenv'),
+    Transifex = require('transifex'),
+    runSeq = require('run-sequence'); 
 
 // Grab env vars from .env file
-dotenv.load({silent: true});
+dotenv.load({ silent: true });
 // load user defined options
 if (fs.existsSync('.gulpconfig.json')) {
     gutil.log('.gulpconfig.json is deprecated. Please use .env');
@@ -33,7 +33,7 @@ if (fs.existsSync('.gulpconfig.json')) {
 var defaultOptions = {
     nodeServer: false,
     mockBackend: false,
-    useChromeForKarma : false,
+    useChromeForKarma: false,
     backendUrl: false,
     uglifyJs: true,
     compressedCSS: true
@@ -50,13 +50,13 @@ function getBooleanOption(value, defaultValue) {
 }
 
 var options = {
-    nodeServer          : gutil.env['node-server'] || getBooleanOption(process.env.NODE_SERVER, defaultOptions.nodeServer),
-    mockBackend         : gutil.env['mock-backend'] || getBooleanOption(process.env.MOCK_BACKEND, defaultOptions.mockBackend),
-    useChromeForKarma   : gutil.env['karma-chrome'] || getBooleanOption(process.env.KARMA_CHROME, defaultOptions.useChromeForKarma),
-    backendUrl          : gutil.env['backend-url'] || process.env.BACKEND_URL,
-    uglifyJs            : gutil.env['uglify-js'] || getBooleanOption(process.env.UGLIFY_JS, defaultOptions.uglifyJs),
-    compressedCSS       : gutil.env['compressed-css'] || getBooleanOption(process.env.COMPRESSED_CSS, defaultOptions.compressedCSS),
-    www                 : 'server/www'
+    nodeServer: gutil.env['node-server'] || getBooleanOption(process.env.NODE_SERVER, defaultOptions.nodeServer),
+    mockBackend: gutil.env['mock-backend'] || getBooleanOption(process.env.MOCK_BACKEND, defaultOptions.mockBackend),
+    useChromeForKarma: gutil.env['karma-chrome'] || getBooleanOption(process.env.KARMA_CHROME, defaultOptions.useChromeForKarma),
+    backendUrl: gutil.env['backend-url'] || process.env.BACKEND_URL,
+    uglifyJs: gutil.env['uglify-js'] || getBooleanOption(process.env.UGLIFY_JS, defaultOptions.uglifyJs),
+    compressedCSS: gutil.env['compressed-css'] || getBooleanOption(process.env.COMPRESSED_CSS, defaultOptions.compressedCSS),
+    www: 'server/www'
 };
 
 // Helpers
@@ -106,8 +106,8 @@ function errorHandler(err) {
  * Task: `heroku:production`
  * Heroku Production 
  */
-gulp.task('heroku:production', function(){
-  runSeq('clean', 'build', 'minify')
+gulp.task('heroku:production', function () {
+    // runSeq('clean', 'build', 'minify')
 })
 
 /**
@@ -142,9 +142,9 @@ gulp.task('sass', ['rename'], function () {
  */
 gulp.task('css', [], function () {
     return gulp.src([
-            options.compressedCSS ? 'node_modules/platform-pattern-library/assets/css/*.min.css' : 'node_modules/platform-pattern-library/assets/css/*.css',
-            'node_modules/platform-pattern-library/assets/css/*.css.map'
-            ])
+        options.compressedCSS ? 'node_modules/platform-pattern-library/assets/css/*.min.css' : 'node_modules/platform-pattern-library/assets/css/*.css',
+        'node_modules/platform-pattern-library/assets/css/*.css.map'
+    ])
         .pipe(rename(function (path) {
             // If using compressedCSS, string the .min from filenames
             if (options.compressedCSS) {
@@ -210,7 +210,7 @@ gulp.task('rename', [
     'rename-leaflet-markercluster-default',
     'rename-nvd3',
     'rename-angular-datepicker'
-    ], function () {});
+], function () { });
 
 /**
  * Task: `font`
@@ -238,7 +238,7 @@ gulp.task('browserify', function () {
         })
         .pipe(source('bundle.js'))
         .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}));
+        .pipe(sourcemaps.init({ loadMaps: true }));
 
     if (options.uglifyJs) {
         stream.pipe(uglify());
@@ -247,10 +247,10 @@ gulp.task('browserify', function () {
     stream
 
     // Strip sourcemaps out to another file
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(options.www + '/js'))
-    .pipe(notify('JS compiled'))
-    .pipe(livereload())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(options.www + '/js'))
+        .pipe(notify('JS compiled'))
+        .pipe(livereload())
     ;
     return stream;
 });
@@ -261,11 +261,11 @@ gulp.task('browserify', function () {
  */
 gulp.task('watchify', function () {
     var stream = watchify(browserify(helpers.getBrowserifyConfig()))
-    .on('update', function () {
-        bundleBrowserify(stream);
-    })
-    .transform('brfs')
-    .transform(helpers.setBackendUrl());
+        .on('update', function () {
+            bundleBrowserify(stream);
+        })
+        .transform('brfs')
+        .transform(helpers.setBackendUrl());
 
     return bundleBrowserify(stream);
 });
@@ -277,7 +277,7 @@ function bundleBrowserify(stream) {
         })
         .pipe(source('bundle.js'))
         .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(options.www + '/js'))
         .pipe(notify('JS compiled'))
@@ -333,7 +333,7 @@ gulp.task('test', function (done) {
 gulp.task('send-stats-to-coveralls', function () {
     var coveralls = require('gulp-coveralls');
     gulp.src('test/coverage/**/lcov.info')
-    .pipe(coveralls());
+        .pipe(coveralls());
 
 });
 
@@ -408,7 +408,7 @@ gulp.task('release', ['transifex-download'], function () {
 /**
  * Task `heroku:dev` - builds app for heroku
  */
-gulp.task('heroku:dev', ['build'], function () {});
+gulp.task('heroku:dev', ['build'], function () { });
 
 /**
  * Task: `transifex-download`
@@ -465,9 +465,9 @@ gulp.task('transifex-download', function () {
                 }
 
                 fs.writeFileSync(locales_dir +
-                                 // Replace underscore with hyphen
-                                 language.language_code.replace('_', '-') +
-                                 '.json', data);
+                    // Replace underscore with hyphen
+                    language.language_code.replace('_', '-') +
+                    '.json', data);
             });
         });
     });
