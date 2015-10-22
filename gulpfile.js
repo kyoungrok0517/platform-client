@@ -411,6 +411,11 @@ gulp.task('release', ['transifex-download'], function () {
 gulp.task('heroku:dev', ['build'], function () { });
 
 /**
+ * Task `heroku:production` - builds app for heroku
+ */
+gulp.task('heroku:production', ['build'], function () { });
+
+/**
  * Task: `transifex-download`
  * Download translations from www.transifex.com
  */
