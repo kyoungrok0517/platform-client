@@ -103,14 +103,6 @@ function errorHandler(err) {
 }
 
 /**
- * Task: `heroku:production`
- * Heroku Production 
- */
-gulp.task('heroku:production', function () {
-    // runSeq('clean', 'build', 'minify')
-})
-
-/**
  * Task: `sass`
  * Converts SASS files to CSS
  */
