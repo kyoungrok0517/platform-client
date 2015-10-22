@@ -48,8 +48,7 @@ function (
         },
         getPostQuery: function () {
             var query = _.omit(
-                // _.pick(this, 'tags', 'form', 'current_stage', 'set', 'status', 'q', 'created_after', 'created_before'),
-                _.pick(this, 'tags', 'form', 'set', 'status', 'q', 'created_after', 'created_before'),
+                _.pick(this, 'tags', 'form', 'current_stage', 'set', 'status', 'q', 'created_after', 'created_before'),
                 function (value, key, object) {
                     // Is value empty? ..and not a date object
                     // _.empty only works on arrays, object and strings.
