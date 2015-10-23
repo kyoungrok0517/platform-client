@@ -2,8 +2,8 @@
     "app": {
         "powered_by_ushahidi" : "Powered by Ushahidi.",
         "support" : "Support",
-        "documentation": "Documentation",
-        "report_a_bug": "Report a bug",
+        "documentation": "문서",
+        "report_a_bug": "버그 ",
         "forbidden": "Sorry, you're not allowed to do that."
     },
     "limit": {
