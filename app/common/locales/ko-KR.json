@@ -62,7 +62,7 @@
     "global_filter": {
         "filter" : "Filter",
         "categories" : {
-            "categories" : "상위 카테고리",
+            "categories" : "상위 식품유형",
             "all_categories" : "전체"
         },
         "post_types" : {
