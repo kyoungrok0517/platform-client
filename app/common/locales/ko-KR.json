@@ -132,7 +132,7 @@
     },
     "nav" : {
         "about" : "About",
-        "activity" : "활동",
+        "activity" : "식품 위협 현황",
         "add_post" : "리포트 추가",
         "account_settings" : "계정 설정",
         "all" : "All",
@@ -196,7 +196,7 @@
     },
     "post": {
         "posts" : "Posts",
-        "all_posts" : "모든 리포트",
+        "all_posts" : "",
         "no_search_results" : "Your search didn't match any posts",
         "no_posts_yet" : "This are no posts yet!",
         "add_first_post": "Add the first post",
