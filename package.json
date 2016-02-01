@@ -52,6 +52,7 @@
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
     "protractor": "^2.1.0",
+    "send": "^0.13.1",
     "serve-static": "^1.10.0",
     "underscore.string": "^2.3.3",
     "vinyl-buffer": "^1.0.0",
